@@ -1,5 +1,5 @@
 {
-  "name": "digitalbusinessteam/wp-plugin-boilerplate",
+  "name": "masonitedoors/wp-plugin-boilerplate",
   "description": "A WordPress plugin boilerplate for Masonite.",
   "type": "wordpress-plugin",
   "license": "GPL-2.0-or-later",
