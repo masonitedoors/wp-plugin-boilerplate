@@ -61,36 +61,4 @@ class Frontend {
 		);
 	}
 
-	/**
-	 * Register the react app assets for the public-facing side of the site.
-	 */
-	public function enqueue_app_assets() {
-		if ( ! class_exists( 'Masonite\WP_Plugin_Boilerplate\App' ) ) {
-			return;
-		}
-
-		global $post;
-
-		if ( \has_shortcode( $post->post_content, 'wp_plugin_boilerplate' ) ) {
-			$app = new App( $this->plugin );
-			$app->enqueue_assets(
-				$this->plugin->get_plugin_dir_path() . 'app',
-				[
-					'base_url' => $this->plugin->get_plugin_dir_url() . 'app',
-				]
-			);
-		}
-	}
-
-	/**
-	 * The main shortcode for the public-facing side of the site.
-	 *
-	 * [wp_plugin_boilerplate]
-	 *
-	 * @return string
-	 */
-	public function shortcode() {
-		return '<div id="root"></div>';
-	}
-
 }
