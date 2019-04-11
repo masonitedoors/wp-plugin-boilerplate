@@ -1,6 +1,0 @@
-{
-  "extends": "stylelint-config-wordpress/scss",
-  "rules": {
-    "color-named": null
-  }
-}
