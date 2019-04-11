@@ -2,12 +2,6 @@
 
 A WordPress plugin boilerplate for [Masonite](https://www.masonite.com) with recommended settings for [VS Code](https://code.visualstudio.com/). This plugin enforces Masonite coding standards for scss, js, & php via linting during the build process as well as through local git hooks.
 
-## Setup
-
-```sh
-npx @masonite/create-wp-plugin
-```
-
 ## Requirements
 
 - PHP 7
