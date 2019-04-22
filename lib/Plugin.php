@@ -120,7 +120,6 @@ class Plugin {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_frontend, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_frontend, 'enqueue_scripts' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_frontend, 'enqueue_app_assets' );
 		$this->loader->add_shortcode( 'wp_plugin_boilerplate', $plugin_frontend, 'shortcode' );
 	}
 
