@@ -12,9 +12,6 @@ namespace Masonite\WP_Plugin_Boilerplate;
 /**
  * The public-facing functionality of the plugin.
  *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the dashboard-specific stylesheet and JavaScript.
- *
  * @package    WP_Plugin_Boilerplate
  */
 class Frontend {
