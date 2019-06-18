@@ -1,33 +1,33 @@
-# Copyright (C) 2018 Masonite
+# Copyright (C) 2019 Masonite
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Plugin Boilerplate 1.0.0\n"
+"Project-Id-Version: My Plugin Name 1.0.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/wp-plugin-boilerplate\n"
-"POT-Creation-Date: 2018-11-20 15:33:21+00:00\n"
+"POT-Creation-Date: 2019-06-18 20:29:03+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"X-Generator: node-wp-i18n 1.2.1\n"
+"X-Generator: node-wp-i18n 1.2.3\n"
 
-#: lib/Admin.php:70
-msgid "WP Plugin Boilerplate Settings"
+#: lib/Admin.php:57
+msgid "My Plugin Name Settings"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-msgid "WP Plugin Boilerplate"
+msgid "My Plugin Name"
 msgstr ""
 
-#: lib/Admin.php:102
+#: lib/Admin.php:88
 msgid "Settings"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid "A WordPress plugin boilerplate for Masonite."
+msgid "A brief description of what this plugin does."
 msgstr ""
 
 #. Author of the plugin/theme

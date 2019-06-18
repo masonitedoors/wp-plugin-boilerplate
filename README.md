@@ -4,7 +4,7 @@ A WordPress plugin boilerplate for [Masonite](https://www.masonite.com) with rec
 
 ## Requirements
 
-- PHP 7
+- PHP >= 7.3
 - [Git](https://git-scm.com/) for version control
 - [Composer](https://getcomposer.org/) for managing PHP dependencies
 - [Node 8+](https://nodejs.org)
@@ -35,4 +35,4 @@ npm run i18n
 
 ## License
 
-WP Plugin Boilerplate is licensed under [GNU General Public License v2 (or later)](./LICENSE).
+My Plugin Name is licensed under [GNU General Public License v2 (or later)](./LICENSE).

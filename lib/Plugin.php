@@ -1,16 +1,8 @@
 <?php
-/**
- * The file that defines the core plugin class
- *
- * A class definition that includes attributes and functions used across both the
- * public-facing side of the site and the dashboard.
- *
- * @package    WP_Plugin_Boilerplate
- */
 
 declare( strict_types = 1 );
 
-namespace Masonite\WP_Plugin_Boilerplate;
+namespace Masonite\WP\My_Plugin_Name;
 
 /**
  * The core plugin class.
@@ -20,8 +12,6 @@ namespace Masonite\WP_Plugin_Boilerplate;
  *
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
- *
- * @package    WP_Plugin_Boilerplate
  */
 class Plugin {
 
@@ -29,35 +19,35 @@ class Plugin {
 	 * The loader that's responsible for maintaining and registering all hooks that power
 	 * the plugin.
 	 *
-	 * @var      WP_Plugin_Boilerplate_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var My_Plugin_Name_Loader
 	 */
 	protected $loader;
 
 	/**
 	 * The unique identifier of this plugin.
 	 *
-	 * @var      string    $pluginname    The string used to uniquely identify this plugin.
+	 * @var string
 	 */
-	protected $pluginname = 'wp-plugin-boilerplate';
+	protected $plugin_name;
 
 	/**
 	 * The current version of the plugin.
 	 *
-	 * @var      string    $version    The current version of the plugin.
+	 * @var string
 	 */
-	protected $version = '1.0.0';
+	protected $plugin_version;
 
 	/**
 	 * Defines the path to the plugin's root directory.
 	 *
-	 * @var      string    $plugin_dir_path    Defines the path to the plugin's root directory.
+	 * @var string
 	 */
 	protected $plugin_dir_path;
 
 	/**
 	 * Defines the url to the plugin's root directory.
 	 *
-	 * @var      string    $plugin_dir_url    Defines the url to the plugin's root directory.
+	 * @var string
 	 */
 	protected $plugin_dir_url;
 
@@ -68,7 +58,9 @@ class Plugin {
 	 * with WordPress.
 	 */
 	public function __construct() {
-		$this->loader = new Loader();
+		$this->plugin_name    = self::get_plugin_name();
+		$this->plugin_version = self::get_plugin_version();
+		$this->loader         = new Loader();
 	}
 
 	/**
@@ -77,7 +69,7 @@ class Plugin {
 	 * Uses the I18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 */
-	private function set_locale() {
+	private function set_locale() : void {
 		$plugin_i18n = new I18n();
 		$plugin_i18n->set_domain( $this->get_plugin_name() );
 		$plugin_i18n->load_plugin_textdomain();
@@ -86,24 +78,24 @@ class Plugin {
 	/**
 	 * Define the path to the plugin's root directory.
 	 */
-	private function define_plugin_dir_path() {
-		$this->plugin_dir_path = \plugin_dir_path( dirname( __FILE__ ) );
+	private function define_plugin_dir_path() : void {
+		$this->plugin_dir_path = plugin_dir_path( dirname( __FILE__ ) );
 	}
 
 	/**
 	 * Define the url to the plugin's root directory.
 	 */
-	private function define_plugin_dir_url() {
-		$this->plugin_dir_url = \plugin_dir_url( dirname( __FILE__ ) );
+	private function define_plugin_dir_url() : void {
+		$this->plugin_dir_url = plugin_dir_url( dirname( __FILE__ ) );
 	}
 
 	/**
 	 * Register all of the hooks related to the dashboard functionality
 	 * of the plugin.
 	 */
-	private function define_admin_hooks() {
-		$plugin_admin    = new Admin( $this );
-		$plugin_basename = \plugin_basename( dirname( __FILE__, 2 ) ) . '/wp-plugin-boilerplate.php';
+	private function define_admin_hooks() : void {
+		$plugin_admin    = new Admin();
+		$plugin_basename = plugin_basename( dirname( __FILE__, 2 ) ) . '/my-plugin-name.php';
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -115,12 +107,12 @@ class Plugin {
 	 * Register all of the hooks related to the public-facing functionality
 	 * of the plugin.
 	 */
-	private function define_frontend_hooks() {
-		$plugin_frontend = new Frontend( $this );
+	private function define_frontend_hooks() : void {
+		$plugin_frontend = new Frontend();
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_frontend, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_frontend, 'enqueue_scripts' );
-		$this->loader->add_shortcode( 'wp_plugin_boilerplate', $plugin_frontend, 'shortcode' );
+		$this->loader->add_shortcode( 'My_Plugin_Name', $plugin_frontend, 'shortcode' );
 	}
 
 	/**
@@ -129,7 +121,7 @@ class Plugin {
 	 * Load the dependencies, define the locale, and set the hooks for the Dashboard and
 	 * the public-facing side of the site.
 	 */
-	public function run() {
+	public function run() : void {
 		$this->set_locale();
 		$this->define_plugin_dir_path();
 		$this->define_plugin_dir_url();
@@ -139,49 +131,49 @@ class Plugin {
 	}
 
 	/**
-	 * The name of the plugin used to uniquely identify it within the context of
-	 * WordPress and to define internationalization functionality.
-	 *
-	 * @return string The name of the plugin.
-	 */
-	public function get_plugin_name() {
-		return $this->pluginname;
-	}
-
-	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
-	 *
-	 * @return WP_Plugin_Boilerplate_Loader    Orchestrates the hooks of the plugin.
 	 */
-	public function get_loader() {
+	public function get_loader() : My_Plugin_Name_Loader {
 		return $this->loader;
 	}
 
 	/**
-	 * Retrieve the version number of the plugin.
-	 *
-	 * @return String The version number of the plugin.
-	 */
-	public function get_version() {
-		return $this->version;
-	}
-
-	/**
 	 * Retrieve the path to the plugin's root directory.
-	 *
-	 * @return String The path to the plugin's root directory.
 	 */
-	public function get_plugin_dir_path() {
+	public function get_plugin_dir_path() : string {
 		return $this->plugin_dir_path;
 	}
 
 	/**
 	 * Retrieve the url to the plugin's root directory.
-	 *
-	 * @return String The url to the plugin's root directory.
 	 */
-	public function get_plugin_dir_url() {
+	public function get_plugin_dir_url() : string {
 		return $this->plugin_dir_url;
+	}
+
+	/**
+	 * The name of the plugin used to uniquely identify it within the context of
+	 * WordPress and to define internationalization functionality.
+	 */
+	public static function get_plugin_name() : string {
+		$plugin_basename = plugin_basename( dirname( __DIR__ ) );
+
+		return $plugin_basename;
+	}
+
+	/**
+	 * Get the plugin's current version.
+	 */
+	public static function get_plugin_version() : string {
+		$plugin_version = '';
+		$path           = plugin_dir_path( dirname( __FILE__ ) ) . 'my-plugin-name.php';
+		$plugin_data    = get_file_data( $path, [ 'Version' => 'Version' ] );
+
+		if ( ! empty( $plugin_data['Version'] ) ) {
+			$plugin_version = $plugin_data['Version'];
+		}
+
+		return $plugin_version;
 	}
 
 }

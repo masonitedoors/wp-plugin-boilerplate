@@ -1,13 +1,8 @@
 <?php
-/**
- * Register all actions and filters for the plugin
- *
- * @package    WP_Plugin_Boilerplate
- */
 
 declare( strict_types = 1 );
 
-namespace Masonite\WP_Plugin_Boilerplate;
+namespace Masonite\WP\My_Plugin_Name;
 
 /**
  * Register all actions and filters for the plugin.
@@ -15,29 +10,27 @@ namespace Masonite\WP_Plugin_Boilerplate;
  * Maintain a list of all hooks that are registered throughout
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
- *
- * @package    WP_Plugin_Boilerplate
  */
 class Loader {
 
 	/**
 	 * The array of actions registered with WordPress.
 	 *
-	 * @var      array    $actions    The actions registered with WordPress to fire when the plugin loads.
+	 * @var array
 	 */
 	protected $actions;
 
 	/**
 	 * The array of filters registered with WordPress.
 	 *
-	 * @var      array    $filters    The filters registered with WordPress to fire when the plugin loads.
+	 * @var array
 	 */
 	protected $filters;
 
 	/**
 	 * The array of shortcodes registered with WordPress.
 	 *
-	 * @var      array    $shortcodes    The shortcodes registered with WordPress to fire when used.
+	 * @var array
 	 */
 	protected $shortcodes;
 
@@ -59,7 +52,7 @@ class Loader {
 	 * @param      int      Optional $priority         The priority at which the function should be fired.
 	 * @param      int      Optional $accepted_args    The number of arguments that should be passed to the $callback.
 	 */
-	public function add_action( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
+	public function add_action( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) : void {
 		$this->actions = $this->add( $this->actions, $hook, $component, $callback, $priority, $accepted_args );
 	}
 
@@ -72,7 +65,7 @@ class Loader {
 	 * @param      int      Optional $priority         The priority at which the function should be fired.
 	 * @param      int      Optional $accepted_args    The number of arguments that should be passed to the $callback.
 	 */
-	public function add_filter( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
+	public function add_filter( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) : void {
 		$this->filters = $this->add( $this->filters, $hook, $component, $callback, $priority, $accepted_args );
 	}
 
@@ -83,7 +76,7 @@ class Loader {
 	 * @param     object $component      A reference to the instance of the object on which the shortcode is defined.
 	 * @param     string $callback       The name of the function that defines the shortcode.
 	 */
-	public function add_shortcode( $tag, $component, $callback ) {
+	public function add_shortcode( $tag, $component, $callback ) : void {
 		$this->shortcodes = $this->add( $this->shortcodes, $tag, $component, $callback );
 	}
 
@@ -97,9 +90,8 @@ class Loader {
 	 * @param      string            $callback         The name of the function definition on the $component.
 	 * @param      int      Optional $priority         The priority at which the function should be fired.
 	 * @param      int      Optional $accepted_args    The number of arguments that should be passed to the $callback.
-	 * @return array                               The collection of actions and filters registered with WordPress.
 	 */
-	private function add( $hooks, $hook, $component, $callback, $priority = 10, $accepted_args = 2 ) {
+	private function add( $hooks, $hook, $component, $callback, $priority = 10, $accepted_args = 2 ) : array {
 		$hooks[] = [
 			'hook'          => $hook,
 			'component'     => $component,
@@ -114,13 +106,13 @@ class Loader {
 	/**
 	 * Register the filters, actions, & shortcodes with WordPress.
 	 */
-	public function run() {
+	public function run() : void {
 		foreach ( $this->filters as $hook ) {
-			\add_filter( $hook['hook'], [ $hook['component'], $hook['callback'] ], $hook['priority'], $hook['accepted_args'] );
+			add_filter( $hook['hook'], [ $hook['component'], $hook['callback'] ], $hook['priority'], $hook['accepted_args'] );
 		}
 
 		foreach ( $this->actions as $hook ) {
-			\add_action( $hook['hook'], [ $hook['component'], $hook['callback'] ], $hook['priority'], $hook['accepted_args'] );
+			add_action( $hook['hook'], [ $hook['component'], $hook['callback'] ], $hook['priority'], $hook['accepted_args'] );
 		}
 
 		foreach ( $this->shortcodes as $hook ) {

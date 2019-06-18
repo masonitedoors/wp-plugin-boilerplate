@@ -1,49 +1,36 @@
 <?php
-/**
- * The dashboard-specific functionality of the plugin.
- *
- * @package    WP_Plugin_Boilerplate
- */
 
 declare( strict_types = 1 );
 
-namespace Masonite\WP_Plugin_Boilerplate;
+namespace Masonite\WP\My_Plugin_Name;
 
 /**
  * The dashboard-specific functionality of the plugin.
  *
- * Defines the plugin name, version, and two examples hooks for how to
+ * Defines the My Plugin Name, version, and two examples hooks for how to
  * enqueue the dashboard-specific stylesheet and JavaScript.
- *
- * @package    WP_Plugin_Boilerplate
  */
-class Admin {
-
-	/**
-	 * The plugin's instance.
-	 *
-	 * @var    Plugin $plugin This plugin's instance.
-	 */
-	private $plugin;
+class Admin extends Plugin {
 
 	/**
 	 * Initialize the class and set its properties.
-	 *
-	 * @param Plugin $plugin This plugin's instance.
 	 */
-	public function __construct( Plugin $plugin ) {
-		$this->plugin = $plugin;
+	public function __construct() {
+		// Exit if not in wp-admin.
+		if ( ! is_admin() ) {
+			return;
+		}
 	}
 
 	/**
 	 * Register the stylesheets for the Dashboard.
 	 */
-	public function enqueue_styles() {
-		\wp_enqueue_style(
-			$this->plugin->get_plugin_name(),
-			\plugin_dir_url( dirname( __FILE__ ) ) . 'dist/styles/admin.css',
+	public function enqueue_styles() : void {
+		wp_enqueue_style(
+			self::get_plugin_name(),
+			plugin_dir_url( dirname( __FILE__ ) ) . 'dist/styles/admin.css',
 			[],
-			$this->plugin->get_version(),
+			self::get_plugin_version(),
 			'all'
 		);
 	}
@@ -51,12 +38,12 @@ class Admin {
 	/**
 	 * Register the JavaScript for the dashboard.
 	 */
-	public function enqueue_scripts() {
-		\wp_enqueue_script(
-			$this->plugin->get_plugin_name(),
-			\plugin_dir_url( dirname( __FILE__ ) ) . 'dist/scripts/admin.js',
+	public function enqueue_scripts() : void {
+		wp_enqueue_script(
+			self::get_plugin_name(),
+			plugin_dir_url( dirname( __FILE__ ) ) . 'dist/scripts/admin.js',
 			[],
-			$this->plugin->get_version(),
+			self::get_plugin_version(),
 			'all'
 		);
 	}
@@ -64,13 +51,13 @@ class Admin {
 	/**
 	 * Register the options page for the plugin.
 	 */
-	public function register_options_page() {
-		\add_submenu_page(
+	public function register_options_page() : void {
+		add_submenu_page(
 			'options-general.php',
-			__( 'WP Plugin Boilerplate Settings', 'wp-plugin-boilerplate' ),
-			__( 'WP Plugin Boilerplate', 'wp-plugin-boilerplate' ),
+			__( 'My Plugin Name Settings', 'my-plugin-name' ),
+			__( 'My Plugin Name', 'my-plugin-name' ),
 			'manage_options',
-			'wp-plugin-boilerplate',
+			'my-plugin-name',
 			[ $this, 'options_page_cb' ]
 		);
 	}
@@ -78,7 +65,7 @@ class Admin {
 	/**
 	 * Callback for the options page.
 	 */
-	public function options_page_cb() {
+	public function options_page_cb() : void {
 		include_once 'Admin/options-page.php';
 	}
 
@@ -89,17 +76,16 @@ class Admin {
 	 * @param string $plugin_file The plugin's main file.
 	 * @param array  $plugin_data The plugin data.
 	 * @param string $context     The context.
-	 *
-	 * @return array
 	 */
-	public function settings_link( $links, $plugin_file, $plugin_data, $context ) {
-		if ( ! \current_user_can( 'manage_options' ) ) {
-			return;
+	public function settings_link( $links, $plugin_file, $plugin_data, $context ) : array {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return $links;
 		}
 
+		// Add new item to the links array.
 		array_unshift(
 			$links,
-			\sprintf( '<a href="%s">%s</a>', \esc_attr( self::get_settings_page_url() ), __( 'Settings', 'wp-plugin-boilerplate' ) )
+			sprintf( '<a href="%s">%s</a>', esc_attr( self::get_settings_page_url() ), __( 'Settings', 'my-plugin-name' ) )
 		);
 
 		return $links;
@@ -107,13 +93,11 @@ class Admin {
 
 	/**
 	 * Return the plugin's settings page URL.
-	 *
-	 * @return string
 	 */
-	protected function get_settings_page_url() {
-		$base = \admin_url( 'options-general.php' );
+	protected function get_settings_page_url() : string {
+		$base = admin_url( 'options-general.php' );
 
-		return \add_query_arg( 'page', 'wp-plugin-boilerplate', $base );
+		return add_query_arg( 'page', 'my-plugin-name', $base );
 	}
 
 }

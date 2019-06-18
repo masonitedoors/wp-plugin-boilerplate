@@ -1,42 +1,32 @@
 <?php
-/**
- * Define the internationalization functionality
- *
- * Loads and defines the internationalization files for this plugin
- * so that it is ready for translation.
- *
- * @package    WP_Plugin_Boilerplate
- */
 
 declare( strict_types = 1 );
 
-namespace Masonite\WP_Plugin_Boilerplate;
+namespace Masonite\WP\My_Plugin_Name;
 
 /**
  * Define the internationalization functionality.
  *
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
- *
- * @package    WP_Plugin_Boilerplate
  */
 class I18n {
 
 	/**
 	 * The domain specified for this plugin.
 	 *
-	 * @var      string    $domain    The domain identifier for this plugin.
+	 * @var string
 	 */
 	private $domain;
 
 	/**
 	 * Load the plugin text domain for translation.
 	 */
-	public function load_plugin_textdomain() {
-		\load_plugin_textdomain(
+	public function load_plugin_textdomain() : void {
+		load_plugin_textdomain(
 			$this->domain,
 			false,
-			dirname( dirname( \plugin_basename( __FILE__ ) ) ) . '/languages/'
+			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
 	}
 
@@ -45,7 +35,7 @@ class I18n {
 	 *
 	 * @param string $domain The domain that represents the locale of this plugin.
 	 */
-	public function set_domain( $domain ) {
+	public function set_domain( $domain ) : void {
 		$this->domain = $domain;
 	}
 

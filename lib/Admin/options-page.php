@@ -1,8 +1,6 @@
 <?php
 /**
  * Provide the admin area view for the plugin
- *
- * @package    WP_Plugin_Boilerplate
  */
 
 declare( strict_types = 1 );

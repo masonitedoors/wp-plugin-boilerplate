@@ -1,6 +1,6 @@
 {
-  "name": "masonitedoors/wp-plugin-boilerplate",
-  "description": "A WordPress plugin boilerplate for Masonite.",
+  "name": "masonitedoors/my-plugin-name",
+  "description": "",
   "type": "wordpress-plugin",
   "license": "GPL-2.0-or-later",
   "minimum-stability": "dev",
@@ -14,16 +14,6 @@
     "dealerdirect/phpcodesniffer-composer-installer": "dev-master",
     "phpcompatibility/php-compatibility": "dev-master",
     "wp-coding-standards/wpcs": "dev-master"
-  },
-  "autoload": {
-    "psr-4": {
-      "Masonite\\WP_Plugin_Boilerplate\\": "lib/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Masonite\\Tests\\WP_Plugin_Boilerplate\\": "tests/"
-    }
   },
   "scripts": {
     "test": "./vendor/bin/phpcs",

@@ -1,17 +1,13 @@
 {
-  "name": "wp-plugin-boilerplate",
-  "version": "1.0.0",
-  "description": "A WordPress plugin boilerplate for Masonite.",
-  "author": "Masonite",
-  "license": "GPL-2.0+",
+  "private": true,
   "scripts": {
+    "start": "npm run --silent watch",
+    "watch": "webpack -w",
     "test": "npm run --silent lint",
     "lint": "npm run lint:styles && npm run lint:scripts && npm run lint:php",
     "lint:scripts": "npx eslint ./src/scripts/**/*.js",
     "lint:styles": "npx stylelint ./src/styles/**/*.scss --syntax scss",
     "lint:php": "./vendor/bin/phpcs",
-    "start": "npm run --silent watch",
-    "watch": "webpack -w",
     "i18n": "npm run i18n:textdomain && npm run i18n:pot",
     "i18n:textdomain": "npx wpi18n addtextdomain --exclude=vendor,node_modules",
     "i18n:pot": "npx wpi18n makepot"
@@ -52,5 +48,11 @@
       "pre-commit": "npm test",
       "pre-push": "npm test"
     }
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie < 11",
+    "not op_mini all"
+  ]
 }
