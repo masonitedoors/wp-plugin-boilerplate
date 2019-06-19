@@ -25,13 +25,13 @@ require_once __DIR__ . '/inc/autoload.php';
  * The code that runs during plugin activation.
  * This action is documented in lib/Activator.php
  */
-register_activation_hook( __FILE__, '\Activator::activate' );
+register_activation_hook( __FILE__, __NAMESPACE__ . '\Activator::activate' );
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in lib/Deactivator.php
  */
-register_deactivation_hook( __FILE__, '\Deactivator::deactivate' );
+register_deactivation_hook( __FILE__, __NAMESPACE__ . '\Deactivator::deactivate' );
 
 /**
  * Begins execution of the plugin.
