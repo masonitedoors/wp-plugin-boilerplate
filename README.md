@@ -10,6 +10,14 @@ A WordPress plugin boilerplate for [Masonite](https://www.masonite.com) with rec
 - [Node 8+](https://nodejs.org)
 - [NPM](https://www.npmjs.com/) (Packaged with Node)
 
+## Setup
+
+Feel free to download the boilerplate or you may run the following command that will prompt you for your new plugin's information:
+
+```sh
+npx create-wp-plugin
+```
+
 ## VS Code
 
 The plugin provideds a recommended set of settings for Visual Studio Code. In order to see inline errors, it is recommended that you install the following extensions:
@@ -35,4 +43,4 @@ npm run i18n
 
 ## License
 
-My Plugin Name is licensed under [GNU General Public License v2 (or later)](./LICENSE).
+This plugin is licensed under [GNU General Public License v2 (or later)](./LICENSE).
