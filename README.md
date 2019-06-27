@@ -15,7 +15,7 @@ A WordPress plugin boilerplate for [Masonite](https://www.masonite.com) with rec
 Feel free to download the boilerplate or you may run the following command that will prompt you for your new plugin's information:
 
 ```sh
-npx create-wp-plugin
+npx @masonite/create-wp-plugin
 ```
 
 ## VS Code
