@@ -36,11 +36,6 @@ module.exports = {
         ]
       },
       {
-        test: /\.vue$/,
-        exclude: /node_modules/,
-        loader: 'vue-loader'
-      },
-      {
         test: /\.(jpe?g|gif|png|svg|eot|woff|woff2|ttf)$/,
         exclude: /node_modules/,
         use: [
@@ -62,7 +57,7 @@ module.exports = {
     new StyleLintPlugin()
   ],
   resolve: {
-    extensions: [ '.js', '.json', '.vue' ]
+    extensions: [ '.js', '.json' ]
   },
   externals: {
     jquery: 'jQuery'
